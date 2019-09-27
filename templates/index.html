@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block body %}
+    <section class="shop_grid_area section-padding-80">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="shop_sidebar_area">
+
+                        <!-- ##### Single Widget ##### -->
+                        <div class="widget catagory mb-50">
+                            <!-- Widget Title -->
+                            <h6 class="widget-title mb-30">Catagories</h6>
+
+                            <!--  Catagories  -->
+                            <div class="catagories-menu">
+                                <ul id="menu-content2" class="menu-content collapse show">
+                                    <!-- Single Item -->
+                                    <li data-toggle="collapse" data-target="#clothing">
+                                    
+                                        <ul class="sub-menu collapse show" id="clothing">
+                                               {% for list in object_list %}
+
+												<li class="nav-item">
+													<a class="nav-link" href="{% url 'category-list' list.category %}">{{ list.get_category_display }}</a>
+												</li>
+
+       										    {% endfor %}
+                                        </ul>
+                                    </li>
+                                    <!-- Single Item -->
+                               
+                                    <!-- Single Item -->
+                    
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- ##### Single Widget ##### -->
+                   
+
+                        <!-- ##### Single Widget ##### -->
+                
+
+                        <!-- ##### Single Widget ##### -->
+                   
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-8 col-lg-9">
+                    <div class="shop_grid_product_area">
+                        
+
+                        <div class="row">
+                            {% for item in object_list %}
+                            <!-- Single Product -->
+                            <div class="col-12 col-sm-6 col-lg-4">
+                                <div class="single-product-wrapper">
+                                    <!-- Product Image -->
+                                    <div class="product-img" style="width: 255px;height:248px;">
+                                        <img src="{{ item.image.url }}" alt="">
+                                        <!-- Hover Thumb -->
+                                        <img class="hover-img" src="{{ item.image.url }}" alt="">
+
+                                        <!-- Product Badge -->
+                                        <!-- <div class="product-badge offer-badge">
+                                            <span>-30%</span>
+                                        </div> -->
+                                        <!-- Favourite -->
+                                        <div class="product-favourite">
+                                            <a href="#" class="favme fa fa-heart"></a>
+                                        </div>
+                                    </div>
+
+                                    <!-- Product Description -->
+                                    <div class="product-description">
+                                        <span>{{ item.get_category_display  }}</span>
+                                        <a href="{% url 'product-detail' item.slug %}">
+                                            <h6>{{ item.title }}</h6>
+                                        </a>
+                                        <p class="product-price"> 
+                                  
+                                                {% if item.discount_price %}
+                
+                                                  {{ item.discount_price  }}   
+                                                  
+                                                {%else %}                 
+                                  
+                                                {{ item.price  }}
+                                                    
+                                                {% endif %}
+                                              </p>
+
+                                        <!-- Hover Content -->
+                                        <div class="hover-content">
+                                            <!-- Add to Cart -->
+                                            <div class="add-to-cart-btn">
+                                                <a href="{% url 'product-detail' item.slug %}" class="btn essence-btn">view</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                           
+                    <!-- Pagination -->
+              
+                </div>
+            </div>
+        </div>
+    </section>
+    {% for list in object_list %}
+
+ 1
+
+       {% endfor %}
+    {% endblock %}

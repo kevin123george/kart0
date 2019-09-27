@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+        {% load static %}
+
+ {% block body %}
+
+<body>
+
+    <section class="single_product_details_area d-flex align-items-center">
+
+        <!-- Single Product Thumb -->
+        <div class="single_product_thumb clearfix">
+            <div class="product_thumbnail_slides owl-carousel">
+                <img src="{{ object.image.url }}" alt="">
+                <img src="{{ object.image.url }}" alt="">
+                <img src="{{ object.image.url }}" alt="">
+            </div>
+        </div>
+
+        <!-- Single Product Description -->
+        <div class="single_product_desc clearfix">
+            <span>{{ object.get_category_display }}</span>
+            <a href="cart.html">
+                <h2>{{ object.title }}</h2>
+                <p class="lead font-weight-bold">Availability : {{ object.get_availabily_display }}</p>
+            </a>
+            <p class="product-price"><span class="old-price"> {{ object.price  }} </span> {{ object.discount_price }}</p>
+            <p class="product-desc"> {{ object.description  }}  </p>
+
+            <!-- Form -->
+                
+            {% if object.availabily == 'S' %}
+    
+    
+            <a  href="{% url 'add-to-cart' object.slug %}" class="btn btn-primary btn-md my-0 p" style="margin: 2%">Add to cart
+          
+            </a>
+
+
+            <a  href="{% url 'remove-from-cart' object.slug %}" class="btn btn-danger btn-md my-0 p">Remove From cart
+             
+            </a>
+
+            {% endif %}
+
+        </div>
+    </section>
+
+
+
+</body>
+   {% endblock %}
+</html>

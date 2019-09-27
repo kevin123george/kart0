@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <body>
+
+
+
+                <div style="padding :2%"> 
+                  <h1 id="colorlib-logo" class="mb-4" >Signup</h1>
+                {% load widget_tweaks %}
+                <form class="form-signin" method="POST">
+                    {% csrf_token %}
+                <div >
+                    <div >
+                      <div action="#" >
+                       
+                        <div class="form-group">
+                            {% render_field form.username  type="text" class="form-control" placeholder="username"%}
+                        </div>
+                        <div class="form-group">
+                          {% render_field form.email  type="text" class="form-control" placeholder="email"%}
+                      </div>
+                        <div class="form-group">
+                            {% render_field form.password1  type="password" class="form-control" placeholder="password "%}
+                        </div>
+                        <div class="form-group">
+                            {% render_field form.password2  type="password" class="form-control" placeholder="confirm password"%}
+                        </div>
+                      
+                        <div class="form-group">
+                          <input type="submit" value="Create" class="btn btn-primary py-3 px-5">
+                        </div>
+                      </form>
+                    
+                    </div>
+                  </from>
+                  {% if form.errors %}
+	<!-- Error messaging -->
+	<div id="errors">
+		<div class="inner">
+			<p>There were some errors in the information you entered. Please correct the following:</p>
+			{{ form.non_field_errors }}
+			<ul>
+				{% for field in form %}
+					{% if field.errors %}<li>{{ field.label }}: {{ field.errors|striptags }}</li>{% endif %}
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+	<!-- /Error messaging -->
+{% endif %}
+            
+            
+      </body>
+
+      {% endblock %}
