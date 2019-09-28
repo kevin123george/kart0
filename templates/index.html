@@ -17,7 +17,7 @@
                                     <!-- Single Item -->
                                     <li data-toggle="collapse" data-target="#clothing">
                                     
-                                        <ul class="sub-menu collapse show" id="clothing">
+                                        <!-- <ul class="sub-menu collapse show" id="clothing">
                                                {% for list in object_list %}
 
 												<li class="nav-item">
@@ -25,7 +25,20 @@
 												</li>
 
        										    {% endfor %}
-                                        </ul>
+                                        </ul> -->
+                                        <li class="nav-item">-->
+                                            <a class="nav-link" href="{% url 'category-list' 'SW' %} ">Sport wears</a>-->
+                                        </li>
+                                        <li class="nav-item">-->
+                                            <a class="nav-link" href="{% url 'category-list' 'S' %} ">Shirt</a>-->
+                                        </li>
+                                        <li class="nav-item">-->
+                                            <a class="nav-link" href="{% url 'category-list' 'OW' %} ">Outwear</a>-->
+                                        </li>
+                                        <li class="nav-item">-->
+                                            <a class="nav-link" href="{% url 'category-list' 'CL' %} ">Classy</a>-->
+                                        </li>
+                                        
                                     </li>
                                     <!-- Single Item -->
                                
