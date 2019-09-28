@@ -19,7 +19,7 @@ STRIPE_SECRET_KEY = 'sk_test_vYTbrHaSlGWKdRRRXFFjweED00KqOGLHws'
 STRIPE_PUBLISHABLE_KEY = 'sk_test_vYTbrHaSlGWKdRRRXFFjweED00KqOGLHws'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '111.222.333.444', 'mywebsite.com']
 
@@ -58,7 +58,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'djecom.urls'
-
+WSGI_APPLICATION = 'djecom.wsgi.application'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
