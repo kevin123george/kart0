@@ -1,2 +1,2 @@
 
-web: gunicorn social_network.wsgi
+web: gunicorn djecom.wsgi
