@@ -356,7 +356,6 @@ class CheckoutView(LoginRequiredMixin, View):
             messages.warning(self.request, "You do not have an active order")
             return redirect("order-summary")
 
-@login_required
 class PaymentMethod(View):
     def get(self, *args, **kwargs):
         # order
@@ -460,7 +459,7 @@ class PaymentMethod(View):
 def product(request):
     return render(request, 'product-page.html')
 
-@login_required
+
 class AddCouponView(View):
     def post(self, *args, **kwargs):
         form = CouponForm(self.request.POST or None)
@@ -484,7 +483,6 @@ class AddCouponView(View):
                 messages.info(self.request, "You do not have an active order")
                 return redirect("check-out")
 
-@login_required
 class RequestRefundView(View):
     def get(self, *args, **kwargs):
         ref_code = self.kwargs.get('ref_code')
