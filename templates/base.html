@@ -77,9 +77,11 @@
             </div>
    
             <!-- User Login Info -->
+            {% if not user.is_authenticated %}
             <div class="user-login-info">
                 <a href="/profile/"><img src="{% static 'img/core-img/user.svg' %}" alt=""></a>
             </div>
+            {% endif %}
             {% if not user.is_authenticated %}
             <div class="user-login-info">
                     <a href="{% url 'account_login' %}"><img src="{% static 'img/core-img/login.svg' %}" alt=""></a>
