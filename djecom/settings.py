@@ -155,11 +155,13 @@ ACCOUNT_EMAIL_VERIFICATION = 'false'
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
 
-# # Email for recovery password
-# EMAIL_USE_TLS = True
-# EMAIL_HOST = 'smtp.sendgrid.net'
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_USER')
-# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
+#password rec
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'techatkevin@gmail.com'
+EMAIL_HOST_PASSWORD = 'cvfockxilqycsoyc'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'kart Team <noreply@codingwithmitch.com>'
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
