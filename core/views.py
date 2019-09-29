@@ -524,7 +524,6 @@ class RequestRefundView(View):
                 messages.info(self.request, "This order does not exists")
                 return redirect("request-refund", ref_code=ref_code)
 
-@login_required
 class ProfileView(View):
     def get(self, *args, **kwargs):
 
