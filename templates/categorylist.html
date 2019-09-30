@@ -16,54 +16,61 @@
         <div class="row wow fadeIn">
 
 
-            <section class="shop_grid_area section-padding-80">
+
           {% for item in object_list %}
-                            <!-- Single Product -->
-                            <div class="col-12 col-sm-6 col-lg-4">
-                              <div class="single-product-wrapper">
-                                  <!-- Product Image -->
-                                  <div class="product-img" style="height:248px;">
-                                      <img src="{{ item.image.url }}" alt="">
-                                      <!-- Hover Thumb -->
-                                      <img class="hover-img" src="{{ item.image.url }}" alt="">
+          <div class="col-lg-3 col-md-6 mb-4">
 
-                                      <!-- Product Badge -->
-                                      <!-- <div class="product-badge offer-badge">
-                                          <span>-30%</span>
-                                      </div> -->
-                                      <!-- Favourite -->
-                                   
-                                  </div>
+            <!--Card-->
+            <div class="card">
 
-                                  <!-- Product Description -->
-                                  <div class="product-description">
-                                      <span>{{ item.get_category_display  }}</span>
-                                      <a href="{% url 'product-detail' item.slug %}">
-                                          <h6>{{ item.title }}</h6>
-                                      </a>
-                                      <p class="product-price"> 
-                                
-                                              {% if item.discount_price %}
-              
-                                                {{ item.discount_price  }}   
-                                                
-                                              {%else %}                 
-                                
-                                              {{ item.price  }}
-                                                  
-                                              {% endif %}
-                                            </p>
+              <!--Card image-->
+              <div class="view overlay">
 
-                                      <!-- Hover Content -->
-                                      <div class="hover-content">
-                                          <!-- Add to Cart -->
-                                          <div class="add-to-cart-btn">
-                                              <a href="{% url 'product-detail' item.slug %}" class="btn essence-btn">view</a>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
+
+                <img src="{{ item.image.url }}" class="card-img-top" 
+                  alt="" style="height: 248px">
+                <a href="{% url 'product-detail' item.slug %}" target="blank">
+                  <div class="mask rgba-white-slight"></div>
+                </a>
+              </div>
+              <!--Card image-->
+
+              <!--Card content-->
+              <div class="card-body text-center">
+                <!--Category & Title-->
+                <a href="{% url 'product-detail' item.slug %}" class="grey-text">
+                  <h5> {{ item.title }}  </h5>
+                </a>
+                <h5>
+                  <strong>
+                    <a href="{% url 'product-detail' item.slug %}" target="blank" class="dark-grey-text">{{ item.get_category_display  }}
+                    
+                    </a>
+                  </strong>
+                </h5>
+
+                <h4 class="font-weight-bold blue-text">
+                  <strong>
+                    {% if item.discount_price %}
+
+                      {{ item.discount_price  }}
+
+                    {%else %}
+
+                  {{ item.price  }}
+
+                    {% endif %}
+
+                </strong>
+                </h4>
+
+              </div>
+              <!--Card content-->
+
+            </div>
+            <!--Card-->
+
+          </div>
           {% empty %}
    <a class='btn btn-primary float-center' href='/'>sorry !! nothing to show  Continue shopping</a>
 
@@ -79,7 +86,7 @@
 
         </div>
         <!--Grid row-->
-</section>
+
 
 
       </section>

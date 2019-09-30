@@ -41,7 +41,7 @@ class Item(models.Model):
     slug = models.SlugField(blank=True, null=True)
     description = models.TextField()
     image = models.ImageField()
-
+    created_on = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.title
 
@@ -59,6 +59,7 @@ class OrderItem(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
     ordered = models.BooleanField(default=False)
+    created_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.quantity} of {self.item.title}"
@@ -81,6 +82,7 @@ class OrderItem(models.Model):
 class Coupon(models.Model):
     code = models.CharField(max_length=15)
     amount = models.FloatField()
+    created_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.code
@@ -105,6 +107,7 @@ class Order(models.Model):
     received = models.BooleanField(default=False)
     refund_requested = models.BooleanField(default=False)
     refund_granted = models.BooleanField(default=False)
+    
 
     '''
     add comment
@@ -142,6 +145,7 @@ class Payment(models.Model):
         User, on_delete=models.SET_NULL, blank=True, null=True)
     amount = models.FloatField()
     timestamp = models.DateTimeField(auto_now_add=True)
+    created_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.user.username
@@ -151,6 +155,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     stripe_customer_id = models.CharField(max_length=50, blank=True, null=True)
     one_click_purchasing = models.BooleanField(default=False)
+    created_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.user.username
@@ -161,6 +166,7 @@ class Refund(models.Model):
     reason = models.TextField()
     accepted = models.BooleanField(default=False)
     email = models.EmailField()
+    created_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.pk}"

@@ -29,7 +29,7 @@ def create_ref_code():
 
 def home(request):
     context = {
-        'items': Item.objects.all()
+        'items': Item.objects.all().order_by('-created_on')
     }
     return render(request, "index.html", context)
 
@@ -42,7 +42,7 @@ class HomeView(ListView):
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
 
-        context['object_list'] = Item.objects.all()
+        context['object_list'] = Item.objects.all().order_by('-created_on')
 
         return context
 
@@ -190,7 +190,7 @@ class CheckoutView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         try:
             form = CheckoutForm()
-            order = Order.objects.get(user=self.request.user, ordered=False)
+            order = Order.objects.get(user=self.request.user, ordered=False).order_by('-created_on')
             context = {
                 'order': order,
                 'form': form,
@@ -548,3 +548,7 @@ class ProfileView(View):
 
         }
         return render(self.request, "profilepage.html", context)
+
+
+
+
