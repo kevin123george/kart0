@@ -84,11 +84,7 @@
                 </div>
 
             {% endif %}
-            {% if user.is_authenticated %}
-            <div class="user-login-info">
-                    <a href="{% url 'account_logout' %}"><img src="{% static 'img/core-img/logout.png' %}" alt=""></a>
-                </div>
-            {% endif %}
+    
 
             {% if user.is_authenticated %}
             <div class="user-login-info">
@@ -96,7 +92,11 @@
                 </div>
             {% endif %}
 
-
+            {% if user.is_authenticated %}
+            <div class="user-login-info">
+                    <a href="{% url 'account_logout' %}"><img src="{% static 'img/core-img/logout.png' %}" alt=""></a>
+                </div>
+            {% endif %}
 
 
 
