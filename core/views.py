@@ -20,11 +20,9 @@ from .forms import CheckoutForm, CouponForm, RefundForm, PaymentForm
 import random
 import string
 import stripe
-#stripe.api_key = settings.STRIPE_SECRET_KEY
+
 stripe.api_key = 'sk_test_YvRLxFpoheL9o83dVzvHJUKP00TXosKCun'
 
-
-# Create your views here.
 def create_ref_code():
     return ''.join(random.choices(string.ascii_lowercase + string.digits, k=20))
 
@@ -43,10 +41,12 @@ class HomeView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
-        # context['posts'] = Post.objects.all()
+
         context['object_list'] = Item.objects.all()
-        # And so on for more models
+
         return context
+
+
 
 
 class CategoryListView(ListView):
@@ -54,8 +54,12 @@ class CategoryListView(ListView):
     template_name = 'categorylist.html'
 
     def get_queryset(self):
+
         category = self.kwargs.get('category')
+        
+        print (category)
         return Item.objects.filter(category=category)
+
 
 
 class ItemDetailView(DetailView):
@@ -81,38 +85,34 @@ class OrderSummaryView(LoginRequiredMixin, View):
 @login_required
 def add_to_cart(request, slug):
     item = get_object_or_404(Item, slug=slug)
-    # print(item.title,item.price,item.slug)
+
     order_item, created = OrderItem.objects.get_or_create(
         item=item, user=request.user, ordered=False)
-    # print(order_item)==admin
+
     order_qs = Order.objects.filter(user=request.user, ordered=False)
-    # print(order_qs) ==return queryset[]
-    # if there is a order
+
     if order_qs.exists():
         order = order_qs[0]
-        #print(order)  == admin
-        #print(item.slug) == denim-pant
 
-        # check if the order item is in the order ==(order ache,for same-orderitem
         if order.items.filter(item__slug=item.slug).exists():
             order_item.quantity += 1
             order_item.save()
             messages.info(request, "This item quantity was updated.")
             return redirect("order-summary")
         else:
-            # ==(order ache, different-orderitem ache)
+
             order.items.add(order_item)
             messages.info(request, "This item was added to your cart.")
             return redirect("order-summary")
 
-    # if there is no order..first time order and first item
+
     else:
 
         ordered_date = timezone.now()
         order = Order.objects.create(
             user=request.user, ordered_date=ordered_date)
         order.items.add(order_item)
-        # print(order_item) ==1 of denim shart
+
         messages.info(request, "This item was added to your cart.")
         return redirect("product-detail", slug=item.slug)
 
@@ -126,7 +126,7 @@ def remove_from_cart(request, slug):
     )
     if order_qs.exists():
         order = order_qs[0]
-        # check if the order item is in the order
+
         if order.items.filter(item__slug=item.slug).exists():
             order_item = OrderItem.objects.filter(
                 item=item,
@@ -155,7 +155,7 @@ def remove_single_item_from_cart(request, slug):
     )
     if order_qs.exists():
         order = order_qs[0]
-        # check if the order item is in the order
+
         if order.items.filter(item__slug=item.slug).exists():
             order_item = OrderItem.objects.filter(
                 item=item,
@@ -346,8 +346,25 @@ class CheckoutView(LoginRequiredMixin, View):
 
                 if payment_option == 'S':
                     return redirect('payment', payment_option='stripe')
-                elif payment_option == 'P':
-                    return redirect('payment', payment_option='paypal')
+                elif payment_option == 'C':
+                    
+     
+                    order_items = order.items.all()
+
+
+                    order_items.update(ordered=True)
+                    for item in order_items:
+                        item.save()
+
+
+
+                    order.ordered = True
+
+                    order.ref_code = create_ref_code()
+                    order.save()
+
+                    messages.success(self.request, "Your order was successful!")
+                    return redirect("/")
                 else:
                     messages.warning(
                         self.request, "Invalid payment option selected")
@@ -358,7 +375,7 @@ class CheckoutView(LoginRequiredMixin, View):
 
 class PaymentMethod(View):
     def get(self, *args, **kwargs):
-        # order
+
         order = Order.objects.get(user=self.request.user, ordered=False)
         print("Billing = ", order.billing_address)
         if order.billing_address:
@@ -376,17 +393,16 @@ class PaymentMethod(View):
         order = Order.objects.get(user=self.request.user, ordered=False)
         amount = int(order.get_total() * 100)
         token = self.request.POST.get('stripeToken')
-        # print(token)
+
 
         try:
             charge = stripe.Charge.create(
 
                 amount=amount,
                 currency="usd",
-                source=token,  # obtained with Stripe.js
+                source=token,  
             )
 
-            # Create The Payment q
 
             payment = Payment()
             payment.stripe_charge_id = charge['id']
@@ -395,13 +411,13 @@ class PaymentMethod(View):
             payment.save()
 
             order_items = order.items.all()
-            # print(order_items)
+
 
             order_items.update(ordered=True)
             for item in order_items:
                 item.save()
 
-            # assign the payment
+
 
             order.ordered = True
             order.payment = payment
@@ -418,36 +434,34 @@ class PaymentMethod(View):
             return redirect("/")
 
         except stripe.error.RateLimitError as e:
-            # Too many requests made to the API too quickly
+
             messages.warning(self.request, "Rate limit error")
             return redirect("/")
 
         except stripe.error.InvalidRequestError as e:
-            # Invalid parameters were supplied to Stripe's API
+
             print(e)
             messages.warning(self.request, "Invalid parameters")
             return redirect("/")
 
         except stripe.error.AuthenticationError as e:
-            # Authentication with Stripe's API failed
-            # (maybe you changed API keys recently)
+
             messages.warning(self.request, "Not authenticated")
             return redirect("/")
 
         except stripe.error.APIConnectionError as e:
-            # Network communication with Stripe failed
+
             messages.warning(self.request, "Network error")
             return redirect("/")
 
         except stripe.error.StripeError as e:
-            # Display a very generic error to the user, and maybe send
-            # yourself an email
+
             messages.warning(
                 self.request, "Something went wrong. You were not charged. Please try again.")
             return redirect("/")
 
         except Exception as e:
-            # send an email to ourselves
+
             messages.warning(
                 self.request, "A serious error occurred. We have been notifed.")
             return redirect("/")
@@ -469,7 +483,7 @@ class AddCouponView(View):
                 order = Order.objects.get(
                     user=self.request.user, ordered=False)
                 coupon_qs = Coupon.objects.filter(code=code)
-                # print(coupon_qs)
+
                 if coupon_qs:
                     order.coupon = coupon_qs[0]
                     order.save()

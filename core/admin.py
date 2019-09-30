@@ -52,8 +52,18 @@ class AddressAdmin(admin.ModelAdmin):
   search_fields = ['user', 'street_address', 'apartment_address', 'zip']
 
 
+class ItemAdmin(admin.ModelAdmin):
+
+
+
+  search_fields = ['title',
+                   'category','description']
+
+
+
+
 # admin.site.register(Post)
-admin.site.register(Item)
+admin.site.register(Item,ItemAdmin)
 admin.site.register(OrderItem)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(Address, AddressAdmin)

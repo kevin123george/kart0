@@ -16,11 +16,7 @@ CATEGORY_CHOICES = (
   
 )
 
-LABEL_CHOICES = (
-    ('P', 'primary'),
-    ('S', 'secondary'),
-    ('D', 'danger')
-)
+
 
 ADDRESS_CHOICES = (
     ('B', 'Billing'),
@@ -33,15 +29,6 @@ AVAILABILITY_PRODUCT = (
 )
 
 
-# class Post(models.Model):
-#     title1 = models.CharField(max_length=120)
-#     title2 = models.CharField(max_length=100, blank=True, null=True)
-#     description = models.TextField()
-#     image = models.ImageField()
-
-#     def __str__(self):
-#         return self.title1
-
 
 class Item(models.Model):
 
@@ -49,7 +36,6 @@ class Item(models.Model):
     price = models.FloatField()
     discount_price = models.FloatField(blank=True, null=True)
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=2)
-    label = models.CharField(choices=LABEL_CHOICES, max_length=1)
     availabily = models.CharField(
         choices=AVAILABILITY_PRODUCT, max_length=1, blank=True, null=True)
     slug = models.SlugField(blank=True, null=True)

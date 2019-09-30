@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 {% block body %}
+<!-- <div class="search-area">
+        <form method="GET">
+            <input type="text" name="q" id="id_q" placeholder="Type for search" >
+            <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </form>
+    </div> -->
     <section class="shop_grid_area section-padding-80">
         <div class="container">
             <div class="row">
@@ -10,6 +16,7 @@
                         
 
                         <div class="row">
+         
                             {% for item in object_list %}
                             <!-- Single Product -->
                             <div class="col-12 col-sm-6 col-lg-4">
@@ -58,6 +65,7 @@
                                 </div>
                             </div>
                             {% endfor %}
+                       
                            
                     <!-- Pagination -->
               

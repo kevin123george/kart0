@@ -19,6 +19,7 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
+
     path('category/<category>', CategoryListView.as_view(), name='category-list'),
     path('product/<slug:slug>', ItemDetailView.as_view(), name='product-detail'),
     path('add-to-cart/<slug:slug>', add_to_cart, name='add-to-cart'),
