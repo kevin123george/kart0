@@ -58,7 +58,7 @@ class CategoryListView(ListView):
         category = self.kwargs.get('category')
         
         print (category)
-        return Item.objects.filter(category=category)
+        return Item.objects.filter(category=category).order_by('-created_on')
 
 
 
