@@ -190,7 +190,7 @@ class CheckoutView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         try:
             form = CheckoutForm()
-            order = Order.objects.get(user=self.request.user, ordered=False).order_by('-created_on')
+            order = Order.objects.get(user=self.request.user, ordered=False)
             context = {
                 'order': order,
                 'form': form,
