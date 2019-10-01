@@ -61,7 +61,7 @@
         <div class="header-meta d-flex clearfix justify-content-end">
             <!-- Search Area -->
             <div class="search-area">
-                <form method="GET">
+                <form method="GET" action="{% url  'home' %}">
                     <input type="text" name="q" id="id_q" placeholder="Type for search" >
                     <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </form>
