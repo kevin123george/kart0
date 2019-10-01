@@ -23,8 +23,18 @@
 
 </head>
 <style>
-        a:hover {
-          background-color:#bababa;
+        /* Style the buttons */
+        .btn {
+          border: none;
+          outline: none;
+          cursor: pointer;
+          font-size: 18px;
+        }
+        
+        /* Style the active class, and buttons on mouse-over */
+        .active, .btn:hover {
+          background-color: #666;
+          color: white;
         }
         </style>
 <body >
@@ -132,41 +142,43 @@
                 <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
             </div>
             <!-- Nav Start -->
-            <div class="classynav">
-             
+            
+            <div class="classynav" id ="myDIV">
+                 
                 <ul>
                  
                     <li>Category</li>
-                    <li class="nav-item">
+                    <li class="btn">
                         <a class="nav-link" href="{% url 'category-list' 'SW' %} ">Sport wears</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="btn">
                         <a class="nav-link" href="{% url 'category-list' 'S' %} ">Shirt</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="btn">
                         <a class="nav-link" href="{% url 'category-list' 'OW' %} ">Outwear</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="btn">
                         <a class="nav-link" href="{% url 'category-list' 'CL' %} ">Classy</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="btn">
                         <a class="nav-link" href="{% url 'category-list' 'EW' %} ">Ethnic Wear</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="btn">
                         <a class="nav-link" href="{% url 'category-list' 'WW' %} ">Western Wear</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="btn">
                         <a class="nav-link" href="{% url 'category-list' 'FW' %} ">Fusion Wear</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="btn">
                         <a class="nav-link" href="{% url 'category-list' 'FOW' %} ">Formal Wear</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="btn">
                         <a class="nav-link" href="{% url 'category-list' 'LJ' %} ">Leggings & Jeggings</a>
                     </li>
                 </ul>
        
-            </div>
+          
+        </div>
             
             <!-- Nav End -->
         </div>
