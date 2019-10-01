@@ -14,7 +14,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
-
+from django.db.models import Q
 from .forms import CheckoutForm, CouponForm, RefundForm, PaymentForm
 
 import random
@@ -32,22 +32,6 @@ def home(request):
         'items': Item.objects.all().order_by('-created_on')
     }
     return render(request, "index.html", context)
-
-
-class HomeView(ListView):
-    model = Item
-    paginate_by = 4
-    template_name = 'index.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(HomeView, self).get_context_data(**kwargs)
-
-        context['object_list'] = Item.objects.all().order_by('-created_on')
-
-        return context
-
-
-
 
 class CategoryListView(ListView):
     model = Item
@@ -554,6 +538,10 @@ class ProfileView(View):
 
 def board_index(request):
     projects = Item.objects.all()
+    lookup = request.GET.get('q')
+    print (lookup)
+    if lookup:
+            projects = Item.objects.filter(Q(title__icontains = lookup) | Q(category__icontains = lookup) |Q(description__icontains = lookup) )
     context = {
         'projects': projects
     }

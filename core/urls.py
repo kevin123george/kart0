@@ -1,8 +1,7 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
-from .views import HomeView,\
-    ItemDetailView,\
+from .views import ItemDetailView,\
     CheckoutView,\
     add_to_cart,\
     remove_from_cart,\
@@ -18,7 +17,7 @@ from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
-    path('', HomeView.as_view(), name='home'),
+    # path('', HomeView.as_view(), name='home'),
 
     path('category/<category>', CategoryListView.as_view(), name='category-list'),
     path('product/<slug:slug>', ItemDetailView.as_view(), name='product-detail'),
