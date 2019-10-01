@@ -43,28 +43,19 @@
                 </div>
                 <!-- Nav Start -->
                 <div class="classynav">
+                 
                     <ul>
-                       
                         <li><a href="\">Shop</a></li>
-                        <li>Category</li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'category-list' 'SW' %} ">Sport wears</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'category-list' 'S' %} ">Shirt</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'category-list' 'OW' %} ">Outwear</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'category-list' 'CL' %} ">Classy</a>
-                        </li>
                         
                     </ul>
+           
                 </div>
+                
                 <!-- Nav End -->
             </div>
         </nav>
+    </nav>
+        
 
         <!-- Header Meta Data -->
         <div class="header-meta d-flex clearfix justify-content-end">
@@ -125,6 +116,58 @@
 
    
 </div>
+<nav class="classy-navbar" id="essenceNav" >
+  
+        <div class="classy-navbar-toggler">
+            <span class="navbarToggler"><span></span><span></span><span></span></span>
+        </div>
+        <!-- Menu -->
+        <div class="classy-menu">
+            <!-- close btn -->
+            <div class="classycloseIcon">
+                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+            </div>
+            <!-- Nav Start -->
+            <div class="classynav">
+             
+                <ul>
+                 
+                    <li>Category</li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'category-list' 'SW' %} ">Sport wears</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'category-list' 'S' %} ">Shirt</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'category-list' 'OW' %} ">Outwear</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'category-list' 'CL' %} ">Classy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'category-list' 'EW' %} ">Ethnic Wear</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'category-list' 'WW' %} ">Western Wear</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'category-list' 'FW' %} ">Fusion Wear</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'category-list' 'FOW' %} ">Formal Wear</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'category-list' 'LJ' %} ">Leggings & Jeggings</a>
+                    </li>
+                </ul>
+       
+            </div>
+            
+            <!-- Nav End -->
+        </div>
+    </nav>
+    <hr />
 {% if messages %}
 
   {% for message in messages %}
@@ -135,6 +178,9 @@
         </button>
       </div>
       {% endfor %}
+
+
+
 {% endif %}
 
 

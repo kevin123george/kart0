@@ -12,7 +12,13 @@ CATEGORY_CHOICES = (
     ('S', 'Shirt'),
     ('SW', 'Sport wear'),
     ('OW', 'Outwear'),
-    ('CL','Classy')
+    ('CL','Classy'),
+    ('EW','Ethnic Wear'),
+    ('WW','Western Wear'),
+    ('FW','Fusion Wear'),
+    ('FOW','Formal Wear'),
+    ('LJ','Leggings & Jeggings')
+
   
 )
 
