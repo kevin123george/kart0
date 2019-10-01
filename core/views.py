@@ -552,3 +552,9 @@ class ProfileView(View):
 
 
 
+def board_index(request):
+    projects = Item.objects.all()
+    context = {
+        'projects': projects
+    }
+    return render(request, 'exp.html', context)
