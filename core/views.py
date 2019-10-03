@@ -521,7 +521,7 @@ class RequestRefundView(View):
                 return redirect("request-refund", ref_code=ref_code)
 
 class ProfileView(View):
-    @login_required
+
     def get(self, *args, **kwargs):
 
         orders = Order.objects.filter(
@@ -532,6 +532,7 @@ class ProfileView(View):
 
 
         }
+        @login_required
         return render(self.request, "profilepage.html", context)
 
 
