@@ -22,7 +22,7 @@
   
 
 </head>
-<style>
+<!-- <style>
         /* Style the buttons */
         .btn {
           border: none;
@@ -36,7 +36,7 @@
           background-color: #666;
           color: white;
         }
-        </style>
+        </style> -->
 <body >
  <!-- ##### Header Area Start ##### -->
  <header class="header_area">
@@ -48,12 +48,43 @@
             <!-- Navbar Toggler -->
       
             <!-- Menu -->
-            <div class="classy-menu">
-                <!-- close btn -->
-                <div class="classycloseIcon">
-                    <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-                </div>
-      
+            <div class="classynav">
+                <ul>
+            
+                    <li><a href="#">Category 
+                    </a>
+                        <ul class="dropdown">
+                            <li class="btn">
+                                <a  href="{% url 'category-list' 'SW' %} ">Sport wears</a>
+                            </li>
+                            <li class="btn">
+                                <a  href="{% url 'category-list' 'S' %} ">Shirt</a>
+                            </li>
+                            <li class="btn">
+                                <a  href="{% url 'category-list' 'OW' %} ">Outwear</a>
+                            </li>
+                            <li class="btn">
+                                <a  href="{% url 'category-list' 'CL' %} ">Classy</a>
+                            </li>
+                            <li class="btn">
+                                <a  href="{% url 'category-list' 'EW' %} ">Ethnic Wear</a>
+                            </li>
+                            <li class="btn">
+                                <a  href="{% url 'category-list' 'WW' %} ">Western Wear</a>
+                            </li>
+                            <li class="btn">
+                                <a  href="{% url 'category-list' 'FW' %} ">Fusion Wear</a>
+                            </li>
+                            <li class="btn">
+                                <a  href="{% url 'category-list' 'FOW' %} ">Formal Wear</a>
+                            </li>
+                            <li class="btn">
+                                <a href="{% url 'category-list' 'LJ' %} ">Leggings & Jeggings</a>
+                            </li>
+                        </ul>
+                    </li>
+                 
+                </ul>
             </div>
         </nav>
     </nav>
@@ -131,7 +162,7 @@
             </div>
             <!-- Nav Start -->
             
-            <div class="classynav" id ="myDIV">
+            <!-- <div class="classynav" id ="myDIV">
                  
                 <ul>
                  
@@ -167,11 +198,11 @@
        
           
         </div>
-            
+             -->
             <!-- Nav End -->
         </div>
     </nav>
-    <hr />
+
 {% if messages %}
 
   {% for message in messages %}
