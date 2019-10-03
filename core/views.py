@@ -241,6 +241,7 @@ class CheckoutView(LoginRequiredMixin, View):
 
                     if is_valid_form([shipping_address1, shipping_country, shipping_zip]):
                         shipping_address = Address(
+                         
                             user=self.request.user,
                             street_address=shipping_address1,
                             apartment_address=shipping_address2,
