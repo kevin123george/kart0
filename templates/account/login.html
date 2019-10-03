@@ -1,55 +1,164 @@
 {% extends "base.html" %}
-{% load i18n %}
-{% load account socialaccount %}
-{% load crispy_forms_tags %}
 
-{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+
+
+
 
 {% block body %}
-  <main>
+  <!-- <main>
     <div class="container">
       <section class="mb-4">
         <div class="row wow fadeIn">
           <div class='col-6 offset-3'>
-          <h1>{% trans "Sign In" %}</h1>
+          <h1>Sign In</h1>
 
-          {% get_providers as socialaccount_providers %}
-
-          {% if socialaccount_providers %}
-          <p>{% blocktrans with site.name as site_name %}Please sign in with one
-          of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
-          for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
-
-          <div class="socialaccount_ballot">
-
-            <ul class="socialaccount_providers">
-              {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-            </ul>
-
-            <div class="login-or">{% trans 'or' %}</div>
-
-          </div>
-
-          {% include "socialaccount/snippets/login_extra.html" %}
-
-          {% else %}
-          <p>{% blocktrans %}If you have not created an account yet, then please
-          <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-          {% endif %}
+          
 
           <form class="login" method="POST" action="{% url 'account_login' %}">
             {% csrf_token %}
-            {{ form|crispy }}
+            {{ form }}
             {% if redirect_field_value %}
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
             {% endif %}
-            <a class="btn btn-default" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-            <button class="btn btn-primary" type="submit">{% trans "Sign In" %}</button>
+            <a class="btn btn-default" href="{% url 'account_reset_password' %}">Forgot Password?</a>                     
+            <button class="btn btn-primary" type="submit">Sign In</button>
           </form>
           </div>
         </div>
       </section>
     </div>
-  </main>
+  </main> -->
+
+  {% load widget_tweaks %}
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+<title>Bootstrap Simple Login Form with Blue Background</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+<style type="text/css">
+	body{
+		color: #fff;
+		background: gray;
+		font-family: 'Roboto', sans-serif;
+	}
+    .form-control{
+		height: 41px;
+		background: #f2f2f2;
+		box-shadow: none !important;
+		border: none;
+	}
+	.form-control:focus{
+		background: #e2e2e2;
+	}
+    .form-control, .btn{        
+        border-radius: 3px;
+    }
+	.signup-form{
+		width: 35% ;
+		margin: 10% auto;
+	}
+	.signup-form form{
+		color: #999;
+		border-radius: 3px;
+    	margin-bottom: 15px;
+        background: #fff;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        padding: 30px;
+    }
+	.signup-form h2 {
+		color: #333;
+		font-weight: bold;
+        margin-top: 0;
+    }
+    .signup-form hr {
+        margin: 0 -30px 20px;
+    }    
+	.signup-form .form-group{
+		margin-bottom: 20px;
+	}
+	.signup-form input[type="checkbox"]{
+		margin-top: 3px;
+	}
+	.signup-form .row div:first-child{
+		padding-right: 10px;
+	}
+	.signup-form .row div:last-child{
+		padding-left: 10px;
+	}
+    .signup-form .btn{        
+        font-size: 16px;
+        font-weight: bold;
+		background: #3598dc;
+		border: none;
+		min-width: 140px;
+    }
+	.signup-form .btn:hover, .signup-form .btn:focus{
+		background: #2389cd !important;
+        outline: none;
+	}
+    .signup-form a{
+		color: #fff;
+		text-decoration: underline;
+	}
+	.signup-form a:hover{
+		text-decoration: none;
+	}
+	.signup-form form a{
+		color: #3598dc;
+		text-decoration: none;
+	}	
+	.signup-form form a:hover{
+		text-decoration: underline;
+	}
+    .signup-form .hint-text {
+		padding-bottom: 15px;
+		text-align: center;
+    }
+</style>
+</head>
+<body>
+<div class="signup-form" >
+    <form method="post">
+        {% csrf_token %}
+		<h2>Login</h2>
+	
+		<hr>
+ 
+        <div class="form-group">
+            {% render_field form.login  type="text" class="form-control" placeholder="username"%}
+        </div>
+      
+		<div class="form-group">
+      {% render_field form.password  type="password" class="form-control" placeholder="Password "%}
+   
+		</div>
+		<div class="form-group">
+            <button type="submit" class="btn btn-primary btn-lg">Login</button>
+        </div>
+    </form>
+  <div class="hint-text">Don't have an account? <a href="/accounts/signup/">sign here</a></div>
+  {% if form.errors %}
+
+<div id="errors">
+  <div class="inner">
+    <p style="background-color: red ;">There were some errors in the information you entered. Please correct the following:</p>
+    {{ form.non_field_errors }}
+    <ul style="background-color: red">
+      {% for field in form %}
+        {% if field.errors %}<li style="background-color: red ;">{{ field.label }}: {{ field.errors|striptags }}</li>{% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+{% endif %}
+</div>
+
+</body>
 
 {% endblock %}
