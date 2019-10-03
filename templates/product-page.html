@@ -29,7 +29,7 @@
                         <p class="lead font-weight-bold">Availability : {{ object.get_availabily_display }}</p>
     
                         <p class="lead">
-    
+
                             {% if object.discount_price %}
                             <span class="mr-1">
                           <del>
@@ -65,15 +65,23 @@
                         <a  href="{% url 'add-to-cart' object.slug %}" class="btn btn-primary btn-md my-0 p">Add to cart
                             <i class="fas fa-shopping-cart ml-1"></i>
                         </a>
-    
+      
     
                         <a  href="{% url 'remove-from-cart' object.slug %}" class="btn btn-danger btn-md my-0 p">Remove From cart
                             <i class="fas fa-shopping-cart ml-1"></i>
                         </a>
     
                         {% endif %}
-    
-    
+
+                        <script> 
+                            function clickAndDisable(link) {
+                              // disable subsequent clicks
+                              link.onclick = function(event) {
+                                 event.preventDefault();
+                              }
+                            }   
+                         </script>
+                         <a href="target.html" onclick="clickAndDisable(this);">Click here</a>
                     </div>
                     <!--Content-->
     
