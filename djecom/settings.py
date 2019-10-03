@@ -20,7 +20,7 @@ STRIPE_SECRET_KEY = 'sk_test_vYTbrHaSlGWKdRRRXFFjweED00KqOGLHws'
 STRIPE_PUBLISHABLE_KEY = 'sk_test_vYTbrHaSlGWKdRRRXFFjweED00KqOGLHws'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['kart0.herokuapp.com','localhost', '127.0.0.1', '111.222.333.444', 'mywebsite.com']
 
