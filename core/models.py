@@ -117,7 +117,7 @@ class Order(models.Model):
 
     '''
     add comment
-    
+
     '''
 
     def __str__(self):
