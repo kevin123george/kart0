@@ -124,7 +124,7 @@
          
             <!-- Cart Area -->
             <div class="cart-area">
-                <a href="/order-summary/" ><img src="{% static 'img/core-img/bag.svg' %}" alt=""></a>
+                <a href="/order-summary/" ><img src="{% static 'img/core-img/bag.svg' %}" alt=""><span>{{ projects.items.count }}</span></a>
             </div>
             {% if user.is_authenticated %}
             <div class="user-login-info">
@@ -143,9 +143,7 @@
 <div class="right-side-cart-area">
 
     <!-- Cart Button -->
-    <div class="cart-button">
-        <a href="#" id="rightSideCart"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>3</span></a>
-    </div>
+
 
    
 </div>
