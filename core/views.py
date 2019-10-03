@@ -532,7 +532,7 @@ class ProfileView(View):
 
 
         }
-@login_required
+
         return render(self.request, "profilepage.html", context)
 
 
