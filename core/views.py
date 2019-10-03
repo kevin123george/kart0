@@ -540,11 +540,11 @@ class ProfileView(View):
 
 
 def board_index(request):
-    projects = Item.objects.all()
+    projects = Item.objects.all().order_by('-created_on')
     lookup = request.GET.get('q')
     print (lookup)
     if lookup:
-            projects = Item.objects.filter(Q(title__icontains = lookup) | Q(category__icontains = lookup) |Q(description__icontains = lookup) )
+            projects = Item.objects.filter(Q(title__icontains = lookup) | Q(category__icontains = lookup) |Q(description__icontains = lookup) ).order_by('-created_on')
     context = {
         'projects': projects
     }
