@@ -16,8 +16,8 @@ CATEGORY_CHOICES = (
     ('EW','Ethnic Wear'),
     ('WW','Western Wear'),
     ('FW','Fusion Wear'),
-    ('FOW','Formal Wear'),
-    ('LJ','Leggings & Jeggings')
+  
+
 
   
 )
