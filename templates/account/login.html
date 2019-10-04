@@ -145,11 +145,11 @@
 
 <div id="errors">
   <div class="inner">
-    <p style="background-color: red ;">There were some errors in the information you entered. Please correct the following:</p>
+    <p ">There were some errors in the information you entered. Please correct the following:</p>
     {{ form.non_field_errors }}
-    <ul style="background-color: red">
+    <ul ">
       {% for field in form %}
-        {% if field.errors %}<li style="background-color: red ;">{{ field.label }}: {{ field.errors|striptags }}</li>{% endif %}
+        {% if field.errors %}<li >{{ field.label }}: {{ field.errors|striptags }}</li>{% endif %}
       {% endfor %}
     </ul>
   </div>
