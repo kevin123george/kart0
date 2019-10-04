@@ -333,23 +333,26 @@ class CheckoutView(LoginRequiredMixin, View):
                     return redirect('payment', payment_option='stripe')
                 elif payment_option == 'C':
                     
-     
-                    order_items = order.items.all()
+                    if form.is_valid:
+                        print  ("valid")
+                        order_items = order.items.all()
 
 
-                    order_items.update(ordered=True)
-                    for item in order_items:
-                        item.save()
+                        order_items.update(ordered=True)
+                        for item in order_items:
+                            item.save()
 
 
 
-                    order.ordered = True
+                        order.ordered = True
 
-                    order.ref_code = create_ref_code()
-                    order.save()
+                        order.ref_code = create_ref_code()
+                        order.save()
 
-                    messages.success(self.request, "Your order was successful!")
-                    return redirect("/")
+                        messages.success(self.request, "Your order was successful!")
+                        return redirect("/")
+                    else:
+                        return redirect("/checkout/")
                 else:
                     messages.warning(
                         self.request, "Invalid payment option selected")
