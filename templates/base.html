@@ -1,5 +1,6 @@
 {% load static %}
 
+{% load cart_template_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -122,7 +123,7 @@
          
             <!-- Cart Area -->
             <div class="cart-area">
-                <a href="/order-summary/" ><img src="{% static 'img/core-img/bag.svg' %}" alt=""><span>{{ projects.items.count }}</span></a>
+                <a href="/order-summary/" ><img src="{% static 'img/core-img/bag.svg' %}" alt=""><span>{{ request.user | cart_item_count }} </span></a>
             </div>
             {% if user.is_authenticated %}
             <div class="user-login-info">
