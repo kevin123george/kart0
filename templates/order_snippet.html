@@ -27,7 +27,7 @@
         {% if order.get_total > 0 %}
             <strong>{{ order.get_total }}</strong>
         {% endif %}
-        {% if order.get_total < 0 %}
+        {% if order.get_total <= 0 %}
         <strong>0</strong>
     {% endif %}
     </li>
