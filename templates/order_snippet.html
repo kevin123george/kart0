@@ -23,8 +23,13 @@
     </li>
     {% endif %}
     <li class="list-group-item d-flex justify-content-between">
-        <span>Total (USD)</span>
-        <strong>{{ order.get_total }}</strong>
+        <span>Total</span>
+        {% if order.get_total > 0 %}
+            <strong>{{ order.get_total }}</strong>
+        {% endif %}
+        {% if order.get_total < 0 %}
+        <strong>0</strong>
+    {% endif %}
     </li>
     </ul>
 
