@@ -55,12 +55,12 @@
         {% endfor %}
 
 
-        {% if object.get_total %}
-    
+        {% if object.get_total > 0 %}
+
         <tr>
             <td colspan="5">
-            <a class='btn essence-btn' href='/checkout/'>Proceed to checkout</a>
-    
+            <a class='btn essence-btn float-right ml-2' href='/checkout/'>Proceed to checkout</a>
+            <a class='btn essence-btn float-right' href='/'>Continue shopping</a>
             </td>
         </tr>
         {% endif %}
