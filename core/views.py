@@ -482,7 +482,7 @@ class AddCouponView(View):
                     return redirect("check-out")
 
             except ObjectDoesNotExist:
-                messages.info(self.request, "You do not have an active order")
+                messages.info(self.request, "")
                 return redirect("check-out")
 
 class RequestRefundView(View):
