@@ -121,10 +121,10 @@ def remove_from_cart(request, slug):
             order_item.save()
             order.items.remove(order_item)
             messages.info(request, "This item was removed from your cart.")
-            return redirect("product-detail", slug=item.slug)
+            return redirect("order-summary")
         else:
             messages.info(request, "This item was not in your cart")
-            return redirect("product-detail", slug=item.slug)
+            return redirect("order-summary")
     else:
         messages.info(request, "You do not have an active order")
         return redirect("product-detail", slug=slug)
