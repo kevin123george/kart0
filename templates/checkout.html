@@ -242,9 +242,9 @@
             <div class="row">
               <div class="col-50">
                 <h3>Shipping Address</h3>
-
+                <label >Address line 1</label>
                 <input type='text' placeholder='1234 Main St' id='shipping_address' name='shipping_address' class='form-control' required />
-
+                <label>Address line 2</label>
                 <input type='text' placeholder='Apartment or suite' id='shipping_address2' name='shipping_address2' class='form-control' required/>
         
     
@@ -253,9 +253,9 @@
               <div class="col-50">
                 <h3>Billing Address</h3>
       
-
+                <label >Address line 1</label>
                 <input type='text' placeholder='1234 Main St' id='billing_address' name='billing_address' class='form-control' required/>
-
+                <label >Address line 2</label>
                 <input type='text' placeholder='Apartment or suite' id='billing_address2' name='billing_address2' class='form-control' required />
         
                 <div class="row">
@@ -281,20 +281,23 @@
 
             <div class="row">
               <div class="col-50">
-                <label for="state">Zip</label>
+                  <label>Zip</label>
                 <input type='text' placeholder='Zip code' id='shipping_zip' name='shipping_zip' class='form-control' required />
               </div>
               <div class="col-50">
-                <label for="zip">Zip</label>
+                  <label>Zip</label>
                 <input type='text' placeholder='Zip code' id='billing_zip' name='billing_zip' class='form-control' required/>
               </div>
             </div>
             <div class="row">
               {% for value, name in form.fields.payment_option.choices %}
-              <div class="">
-                <input id="{{ name }}" name="payment_option" value="{{ value }}" type="radio" class="custom-control-input" required><br />
-                <label class="custom-control-label" for="{{ name }}">{{ name }}</label><hr />
-              </div>
+         
+                <th>
+                  <input id="{{ name }}" name="payment_option" value="{{ value }}" type="radio" class="custom-control-input" required style="margin-right: 3%">
+                  <label for="{{ name }}"style="margin-right: 3%">{{ name }}<br /></label>
+               
+              </th>
+         
               {% endfor %}
             </div>
 
