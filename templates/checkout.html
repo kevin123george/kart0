@@ -1,8 +1,114 @@
-{% extends "base.html" %}
-{% load crispy_forms_tags %}
+<style>
+  body {
+    font-family: Arial;
+    font-size: 17px;
+    padding: 8px;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  .row {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+    margin: 0 -16px;
+  }
+  
+  .col-25 {
+    -ms-flex: 25%; /* IE10 */
+    flex: 25%;
+  }
+  
+  .col-50 {
+    -ms-flex: 50%; /* IE10 */
+    flex: 50%;
+  }
+  
+  .col-75 {
+    -ms-flex: 75%; /* IE10 */
+    flex: 75%;
+  }
+  
+  .col-25,
+  .col-50,
+  .col-75 {
+    padding: 0 16px;
+  }
+  
+  .container {
+    background-color: #f2f2f2;
+    padding: 5px 20px 15px 20px;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+  }
+  
+  input[type=text] {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  label {
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  .icon-container {
+    margin-bottom: 20px;
+    padding: 7px 0;
+    font-size: 24px;
+  }
+  
+  .btn {
+    background-color: blue;
+    color: white;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    width: 100%;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 17px;
+  }
+  
+  .btn:hover {
+    background-color: #45a049;
+  }
+  
+  a {
+    color: #2196F3;
+  }
+  
+  hr {
+    border: 1px solid lightgrey;
+  }
+  
+  span.price {
+    float: right;
+    color: grey;
+  }
+  
+  /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+  @media (max-width: 800px) {
+    .row {
+      flex-direction: column-reverse;
+    }
+    .col-25 {
+      margin-bottom: 20px;
+    }
+  }
+  </style>
 
-{% block body %}
-<div style="none"> 
+
+
+
+
+<!-- <div style="none"> 
 
 </div>
   <main >
@@ -111,14 +217,100 @@
 
         </div>
 
-        <div class="col-md-4 mb-4">
+        <di style="float : right">
           {% include "order_snippet.html" %}
         </div>
 
       </div>
 
     </div>
+    
   </main>
+ -->
 
-{% endblock  %}
+
+
+  <body>
+
+    <h2 style="margin-left:35%;margin-right:35%">Checkout</h2>
+    <div class="row">
+      <div class="col-75">
+        <div class="container">
+          <form method="POST" class="card-body">
+            {% csrf_token %}
+          
+            <div class="row">
+              <div class="col-50">
+                <h3>Shipping Address</h3>
+
+                <input type='text' placeholder='1234 Main St' id='shipping_address' name='shipping_address' class='form-control' required />
+
+                <input type='text' placeholder='Apartment or suite' id='shipping_address2' name='shipping_address2' class='form-control' required/>
+        
+    
+              </div>
+    
+              <div class="col-50">
+                <h3>Billing Address</h3>
+      
+
+                <input type='text' placeholder='1234 Main St' id='billing_address' name='billing_address' class='form-control' required/>
+
+                <input type='text' placeholder='Apartment or suite' id='billing_address2' name='billing_address2' class='form-control' required />
+        
+                <div class="row">
+          
+                </div>
+              </div>
+              
+            </div>
+
+
+            <div class="row">
+              <div class="col-50">
+                <label for="state">country</label>
+                {{ form.shipping_country }}              </div>
+              <div class="col-50">
+                <label for="zip">country</label>
+                {{ form.billing_country }}
+              </div>
+            </div><br />
+
+
+
+
+            <div class="row">
+              <div class="col-50">
+                <label for="state">Zip</label>
+                <input type='text' placeholder='Zip code' id='shipping_zip' name='shipping_zip' class='form-control' required />
+              </div>
+              <div class="col-50">
+                <label for="zip">Zip</label>
+                <input type='text' placeholder='Zip code' id='billing_zip' name='billing_zip' class='form-control' required/>
+              </div>
+            </div>
+            <div class="row">
+              {% for value, name in form.fields.payment_option.choices %}
+              <div class="">
+                <input id="{{ name }}" name="payment_option" value="{{ value }}" type="radio" class="custom-control-input" required><br />
+                <label class="custom-control-label" for="{{ name }}">{{ name }}</label><hr />
+              </div>
+              {% endfor %}
+            </div>
+
+            <input type="submit" value="Continue to checkout" class="btn">
+          </form>
+        </div>
+      </div>
+      <div class="col-25">
+        <div class="container">
+          
+          {% include "order_snippet.html" %}
+         
+        </div>
+      </div>
+    </div>
+    
+    </body>
+
 
