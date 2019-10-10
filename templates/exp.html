@@ -67,23 +67,28 @@
      
                         </div>
                     </div>
-                    <div class="pagination"  >
-                        <ul style="margin-bottom: 30%" >
-                            
-                            {% if projects.has_previous %}
-                            <li style="display:inline-flex"><a href="?page={{ projects.previous_page_number }}" style="color:black">Previous &nbsp</a></li>
-                            {% endif %}
-                            {% for pg in projects.paginator.page_range %}
-                            {% if projects.number == pg %}
-                    <a href="?page={{ pg }}" style="color:black">{{ pg }}</a>
-                        
-                            {% endif %}
-                            {% endfor %}
-                            {% if projects.has_next %}
-                            <li style="display:inline-flex"><a href="?page={{ projects.next_page_number }}" style="color:black"> &nbsp Next  </a></li>
-                            {% endif %}
-                        </ul>
+                   
                 </div>
+                <div class="pagination" style="" >
+                    <ul style=" list-style: none;
+                    padding: 0;
+                    width: 400px;
+                    margin: 0 auto;
+                    text-align: center" >
+                        
+                        {% if projects.has_previous %}
+                        <li style="display:inline-flex"><a href="?page={{ projects.previous_page_number }}" style="color:black">Previous &nbsp</a></li>
+                        {% endif %}
+                        {% for pg in projects.paginator.page_range %}
+                        {% if projects.number == pg %}
+                <a href="?page={{ pg }}" style="color:black">{{ pg }}</a>
+                    
+                        {% endif %}
+                        {% endfor %}
+                        {% if projects.has_next %}
+                        <li style="display:inline-flex"><a href="?page={{ projects.next_page_number }}" style="color:black"> &nbsp Next  </a></li>
+                        {% endif %}
+                    </ul>
                 </section>
-        
+     
                             {% endblock  %}
