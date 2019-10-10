@@ -19,10 +19,10 @@
         <!-- Single Product Description -->
         <div class="single_product_desc clearfix">
             <span>{{ object.get_category_display }}</span>
-            <a href="cart.html">
+
                 <h2>{{ object.title }}</h2>
                 <p class="lead font-weight-bold">Availability : {{ object.get_availabily_display }}</p>
-            </a>
+
             <p class="product-price"><span class="old-price"> {{ object.price  }} </span> {{ object.discount_price }}</p>
             <p class="product-desc"> {{ object.description  }}  </p>
 
