@@ -38,8 +38,11 @@
                {{ order_item.get_total_item_price }}
             {% endif %}
             <a style='color: red;' href="{% url 'remove-from-cart' order_item.item.slug %}">
-                <b class="fas  float-right">delete</b>
+                <b class="fas  float-right">x</b>
             </a>
+            <a href="#">
+                <span class="glyphicon glyphicon-remove"sdfsdf></span>
+              </a>
             </td>
         </tr>
         {% empty %}

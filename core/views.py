@@ -20,7 +20,7 @@ from .forms import Editprofile
 import random
 import string
 import stripe
-
+from django.core.paginator import Paginator
 stripe.api_key = 'sk_test_YvRLxFpoheL9o83dVzvHJUKP00TXosKCun'
 
 def create_ref_code():
@@ -547,6 +547,16 @@ def board_index(request):
     projects = Item.objects.all().order_by('-created_on')
     lookup = request.GET.get('q')
     print (lookup)
+    paginator=Paginator(projects,6)
+    try:
+        page = int(request.GET.get('page','1'))
+    except:
+        page = 1
+    try:
+        projects = paginator.page(page)
+    except(EmptyPage, InvalidPage):
+        projects=paginator.page(paginator.num_pages)
+
     if lookup:
             projects = Item.objects.filter(Q(title__icontains = lookup) | Q(category__icontains = lookup) |Q(description__icontains = lookup) ).order_by('-created_on')
     context = {

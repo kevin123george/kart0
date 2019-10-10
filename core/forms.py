@@ -6,7 +6,7 @@ from allauth.account.forms import SignupForm
 from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 from django.contrib.auth.models import User
 PAYMENT_CHOICES = (
-    ('S', 'Stripe'),
+    ('S', 'Stripe'),    
     ('C','Cash On Delivery')
 
 )
