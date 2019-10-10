@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div style="margin-left: 10%">
+
+<h1 style="margin-top: 2%" ><b>Profile</b></h1>
+<br/>
+User Name : {{ user.username }}
+<br />
+First Name : {{user.first_name}}
+<br />
+Last Name : {{user.last_name}}
+<br />
+Email id : {{user.email}}
+
+
+<div class="form-group"></div>                
+<a class="btn btn-primary py-3 px-5" href="{% url 'edit' %}">edit profile</a>
+</div>
+
+</div>
+
+{% endblock %}

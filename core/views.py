@@ -16,7 +16,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from .forms import CheckoutForm, CouponForm, RefundForm, PaymentForm
-
+from .forms import Editprofile
 import random
 import string
 import stripe
@@ -552,3 +552,23 @@ def board_index(request):
         'projects': projects
     }
     return render(request, 'exp.html', context)
+
+@login_required
+def profiledet(request):
+ 
+    return render(request, 'profile.html',)
+
+
+@login_required
+def edit(request):
+    if request.method == 'POST':
+        form = Editprofile(request.POST,instance=request.user)
+        if form.is_valid():
+            form.save()
+            print("valid")
+            return redirect('profile')
+    else:
+        form = Editprofile(instance=request.user)
+    return render(request, 'edit.html', {
+        'form': form
+    })

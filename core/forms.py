@@ -3,7 +3,8 @@ from django import forms
 from django_countries.fields import CountryField
 from django_countries.widgets import CountrySelectWidget
 from allauth.account.forms import SignupForm
-
+from django.contrib.auth.forms import UserCreationForm,UserChangeForm
+from django.contrib.auth.models import User
 PAYMENT_CHOICES = (
     ('S', 'Stripe'),
     ('C','Cash On Delivery')
@@ -73,3 +74,11 @@ class CustomSignupForm(SignupForm):
         user.last_name = self.cleaned_data['last_name']
         user.save()
         return user
+
+
+class Editprofile(UserChangeForm):
+    class Meta:
+       
+        model = User
+        fields =('first_name','last_name','username','email','date_joined')
+       
