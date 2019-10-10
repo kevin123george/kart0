@@ -530,6 +530,7 @@ class ProfileView(LoginRequiredMixin,View):
 
         orders = Order.objects.filter(
             user=self.request.user, ordered=True)
+        # orders = Order.objects.get(user=self.request.user, ordered=True)
 
         context = {
             "orders": orders,
