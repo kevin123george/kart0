@@ -529,7 +529,7 @@ class ProfileView(LoginRequiredMixin,View):
     def get(self, *args, **kwargs):
 
         orders = Order.objects.filter(
-            user=self.request.user, ordered=True)
+            user=self.request.user, ordered=True).order_by('-start_date')
         # orders = Order.objects.get(user=self.request.user, ordered=True)
 
         context = {
