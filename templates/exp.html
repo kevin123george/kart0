@@ -74,20 +74,22 @@
                     padding: 0;
                     width: 400px;
                     margin: 0 auto;
-                    text-align: center";
+                    text-align: center;
+                     "
+                    
                      >
                         
                         {% if projects.has_previous %}
-                        <li style="display:inline-flex ;"><a href="?page={{ projects.previous_page_number }}" style="color:black"> < &emsp;    </a></li>
+                        <li style="display:inline-flex ;border: solid gray ;padding: 2%;margin: 1%;border-width: thin"><a href="?page={{ projects.previous_page_number }}" style="color:black"> <     </a></li>
                         {% endif %}
                         {% for pg in projects.paginator.page_range %}
                         {% if projects.number == pg %}
-                <a href="?page={{ pg }}" style="color:black">{{ pg }}</a>
+                <a href="?page={{ pg }}" style="color:black;border: solid gray;padding: 2%;margin: 1%;border-width: thin">{{ pg }}</a>
                     
                         {% endif %}
                         {% endfor %}
                         {% if projects.has_next %}
-                        <li style="display:inline-flex"><a href="?page={{ projects.next_page_number }}" style="color:black"> &nbsp &emsp; >  </a></li>
+                        <li style="display:inline-flex;border: solid gray;padding: 2%;margin: 1%;border-width: thin"><a href="?page={{ projects.next_page_number }}" style="color:black"> &nbsp  >  </a></li>
                         {% endif %}
                     </ul>
                 </section>
