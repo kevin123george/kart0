@@ -142,20 +142,25 @@
     <hr />
   <div class="hint-text">Don't have an account? <a href="/accounts/signup/" style="color: #333">signup here</a></div>
   {% if form.errors %}
-
-<div id="errors">
-  <div class="inner">
-    <p ">There were some errors in the information you entered. Please correct the following:</p>
-    {{ form.non_field_errors }}
-    <ul ">
-      {% for field in form %}
-        {% if field.errors %}<li >{{ field.label }}: {{ field.errors|striptags }}</li>{% endif %}
+  {% for field in form %}
+      {% for error in field.errors %}
+          <div class="alert alert-danger">
+              <small>{{ error|escape }}</small>
+          </div>
       {% endfor %}
-    </ul>
-  </div>
-</div>
+  {% endfor %}
 
+  {% for error in form.non_field_errors %}
+      <div class="alert alert-danger">
+          <small>{{ error|escape }}</small>
+      </div>
+  {% endfor %}
 {% endif %}
+
+
+
+
+
 </div>
 
 </body>
