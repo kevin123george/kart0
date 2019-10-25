@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'crispy_forms',
     'django_countries',
+    'debug_toolbar',
 
     'core',
      'widget_tweaks',
@@ -60,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'djecom.urls'
@@ -158,7 +160,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'false'
 
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
-
+INTERNAL_IPS = ('127.0.0.1',)
 #password rec
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
